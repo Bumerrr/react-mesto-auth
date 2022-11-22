@@ -30,7 +30,7 @@ function App() {
    const [isProfileEmail, setIsProfileEmail] = useState('')
    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-   const history = useHistory();
+   const historyUse = useHistory();
 
    useEffect(() => {
       api.getUserInfo()
@@ -130,32 +130,32 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
          authApi.checkToken(jwt)
-            .then(data => {
-               if (data) {
-                  setIsProfileEmail(data.data.email)
+            .then(item => {
+               if (item) {
+                  setIsProfileEmail(item.item.email)
                   setIsLoggedIn(true)
-                  history.push('/');
+                  historyUse.push('/');
                }
             })
             .catch(error => { console.log(error); })
       }
-   }, [history]);
+   }, [historyUse]);
 
    function handleLoginUser(email, password) {
       authApi.loginUser(email, password)
-      .then(data => {
-         if (data.token) {
-            setIsProfileEmail(email)
-            setIsLoggedIn(true);
-            localStorage.setItem('jwt', data.token);
-            history.push('/');
-         }
-      })
-      .catch(error => {
-         setIsInfoTooltipPopupOpen(true);
-         setIsInfoTooltipSuccess(false);
-         console.log(error)
-      })
+         .then(data => {
+            if (data.token) {
+               setIsProfileEmail(email)
+               setIsLoggedIn(true);
+               localStorage.setItem('jwt', data.token);
+               historyUse.push('/');
+            }
+         })
+         .catch(error => {
+            setIsInfoTooltipPopupOpen(true);
+            setIsInfoTooltipSuccess(false);
+            console.log(error)
+         })
    }
 
    function handleRegisterUser(email, password) {
@@ -163,21 +163,24 @@ function App() {
          .then(data => {
             if (data) {
                setIsInfoTooltipSuccess(true);
-               history.push('/sign-in');
+               historyUse.push('/sign-in');
             }
          })
          .catch(error => {
             setIsInfoTooltipSuccess(false);
             console.log(error);
          })
-         .finally(() => setIsInfoTooltipPopupOpen(true));
+         .finally(
+            () =>
+               setIsInfoTooltipPopupOpen(true)
+         );
    }
 
    const handleLogout = () => {
       localStorage.removeItem('jwt');
       setIsProfileEmail('')
       setIsLoggedIn(false);
-      history.push('/sign-in');
+      historyUse.push('/sign-in');
    }
 
 
