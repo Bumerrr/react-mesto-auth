@@ -1,5 +1,5 @@
 import React from "react";
-import useCloseEsc from "./useCloseEsc";
+import useCloseEsc from "../hooks/useCloseEsc";
 
 function InfoTooltip(props) {
 

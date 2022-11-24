@@ -36,10 +36,8 @@ function AvatarPopup(props) {
                     className='popup__info popup__info_type_avatar form__input'
                     minLength='2'
                     name="avatar"
-                    // defaultValue={avatar}
                     ref={avatarRef}
                     required
-                    // onChange={handleAvatarChange}
                 />
                 <span className='form__active-error input-avatar-error'></span>
             </label>

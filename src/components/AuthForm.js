@@ -1,27 +1,6 @@
-import { useState } from 'react';
-import useValidation from "../hooks/useValidation";
+import React from 'react';
 
-
-export default function Login({ onLogin }) {
-
-    const [isEmail, setIsEmail] = useState('');
-    const [isPassword, setIsPassword] = useState('');
-    const { inputEmailRide, inputEmailError, inputEmailTouch } = useValidation(isEmail, { isEmpty: true, isEmail: true }, 'Email');
-    const { inputPasswordRide, inputPasswordError, inputPasswordTouch} = useValidation(isPassword, { isEmpty: true, minLength: 8 }, 'Password');
-
-    function handleChangeEmail(event) {
-        setIsEmail(event.target.value);
-    }
-
-    function handleChangePassword(event) {
-        setIsPassword(event.target.value);
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        onLogin(isEmail, isPassword);
-    }
-
+function AuthForm(props) {
     return (
         <form
             className="auth"
@@ -29,7 +8,7 @@ export default function Login({ onLogin }) {
             name="signInForm"
             formNoValidate
         >
-            <h2 className="auth__title">Вход</h2>
+            <h2 className="auth__title">{props.title}</h2>
             <input
                 className={`auth__form ${!inputEmailRide && inputEmailTouch && 'auth__form_type_error'}`}
                 value={isEmail || ''}
@@ -58,8 +37,16 @@ export default function Login({ onLogin }) {
             <span className={`auth__input-error ${!inputPasswordRide && inputPasswordTouch && 'auth__input-error_active'}`}>
                 {inputPasswordError}
             </span>
-            <button className="auth__button" type="submit" aria-label="Кнопка для входа">Войти</button>
+            <button className="auth__button" type="submit" aria-label="Кнопка для входа">{props.headerLink}</button>
         </form>
-    )
-
+    );
 }
+
+export default AuthForm;
+
+
+// я целый день пытался сделать AuthForm
+// вроде все хорошо передается кроме onLogin и onRegister
+// не проявляется весь функционал
+// дайте пожалуйста направление
+// не пойму в чем беда

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useValidation from "./useValidation";
+import useValidation from "../hooks/useValidation";
 
 export default function Register({ onRegister }) {
 
@@ -28,7 +28,6 @@ export default function Register({ onRegister }) {
             className="auth"
             onSubmit={handleSubmit}
             name="signUpForm"
-            noValidate
         >
             <h2 className="auth__title">Регистрация</h2>
             <input
