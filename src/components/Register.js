@@ -2,7 +2,7 @@ import { useState, Link } from 'react';
 import useValidation from "../hooks/useValidation";
 
 
-export default function Login({ onLogin }) {
+export default function Login({ onRegister }) {
 
     const [isEmail, setIsEmail] = useState('');
     const [isPassword, setIsPassword] = useState('');
@@ -19,7 +19,7 @@ export default function Login({ onLogin }) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        onLogin(isEmail, isPassword);
+        onRegister(isEmail, isPassword);
     }
 
     return (

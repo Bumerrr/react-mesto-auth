@@ -38,8 +38,6 @@ export default function Login({ onLogin }) {
                 type="email"
                 name="email"
                 id="emailInput"
-                // required
-                // formNoValidate
             />
             <span className={`auth__input-error ${!inputEmailRide && inputEmailTouched && 'auth__input-error_active'}`}>
                 {inputEmailError}
@@ -52,8 +50,6 @@ export default function Login({ onLogin }) {
                 type="password"
                 name="password"
                 id="passwordInput"
-                // required
-                // formNoValidate
             />
             <span className={`auth__input-error ${!inputPasswordRide && inputPasswordTouched && 'auth__input-error_active'}`}>
                 {inputPasswordError}
