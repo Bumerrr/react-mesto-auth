@@ -6,6 +6,7 @@ const useValidation = (value = '', validations, variableName) => {
   const [isInputValid, setIsInputValid] = useState(false);
   const [isInputTouched, setIsInputTouched] = useState(false);
   const minLength = validations.minLength;
+  // eslint-disable-next-line no-useless-escape
   const regExpUrl = /(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i;
   const regExpEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
@@ -51,7 +52,7 @@ const useValidation = (value = '', validations, variableName) => {
           } else {
             if (value) {
               setIsInputValid(false);
-              setIsTextError(`Введите корректный адрес`);
+              setIsTextError(`Введите корректный адрес ссылки`);
             }
           }
           break;
@@ -70,6 +71,7 @@ const useValidation = (value = '', validations, variableName) => {
 
     }
     if (isInputValid) setIsInputTouched(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return {

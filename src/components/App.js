@@ -129,18 +129,18 @@ function App() {
    useEffect(() => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
-        authApi.checkToken(jwt)
-          .then(data => {
-            if (data) {
-              setIsProfileEmail(data.data.email)
-              setIsLoggedIn(true)
-              historyUse.push('/');
-              console.log("Вы уже авторизованы, рады вас видеть снова")
-            }
-          })
-          .catch(error => { console.log(error) })
+         authApi.checkToken(jwt)
+            .then(data => {
+               if (data) {
+                  setIsProfileEmail(data.data.email)
+                  setIsLoggedIn(true)
+                  historyUse.push('/');
+                  console.log("Вы уже авторизованы, рады вас видеть снова")
+               }
+            })
+            .catch(error => { console.log(error) })
       }
-    }, [historyUse]);
+   }, [historyUse]);
 
    function handleLoginUser(email, password) {
       authApi.loginUser(email, password)

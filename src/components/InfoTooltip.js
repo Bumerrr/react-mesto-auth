@@ -1,12 +1,10 @@
 import React from "react";
-import useCloseEsc from "../hooks/useCloseEsc";
+import Popup from "./Popup";
 
-function InfoTooltip(props) {
-
-    useCloseEsc(props.isOpen, props.onClose);
+function InfoTooltip({ isOpen, name, onClose, ...props }) {
 
     return (
-        <div className={`popup ${props.isOpen && 'popup_opened'}`}>
+        <Popup isOpen={isOpen} name={name} onClose={onClose}>
             <div className="popup__container">
                 <div
                     className={`popup__status ${props.isSuccess ? 'popup__status_success' : 'popup__status_false'}`}
@@ -22,9 +20,8 @@ function InfoTooltip(props) {
                     onClick={props.onClose}>
                 </button>
             </div>
-        </div>
+        </Popup>
     )
 }
-
 
 export default InfoTooltip;
